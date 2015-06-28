@@ -7,6 +7,7 @@
 //
 
 #import "NSNull+AvoidCrash.h"
+#import <objc/runtime.h>
 
 @implementation NSNull (AvoidCrash)
 
@@ -14,6 +15,14 @@
     BOOL resolveInstanceMethod = [super resolveInstanceMethod:name];
     if (!resolveInstanceMethod) {
         NSLog(@"CAN NOT resolve Instance Method : %@", NSStringFromSelector(name));
+        if (name == @selector(length)) {
+            class_addMethod([self class], name, (IMP)lengthMethodIMP, "Q@:");
+            return YES;
+        }
+        else if (name == @selector(rangeOfCharacterFromSet:)) {
+            class_addMethod([self class], name, (IMP)rangeOfCharacterFromSetMethodIMP, "{NSRange=QQ}@:@");
+            return YES;
+        }
     }
     return resolveInstanceMethod;
 }
@@ -35,6 +44,14 @@
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     NSLog(@"forwardInvocation : %@", anInvocation);
     [super forwardInvocation:anInvocation];
+}
+
+NSUInteger lengthMethodIMP(id self, SEL _cmd) {
+    return 0;
+}
+
+NSRange rangeOfCharacterFromSetMethodIMP(id self, SEL _cmd, id arg1) {
+    return NSMakeRange(0, 0);
 }
 
 @end
