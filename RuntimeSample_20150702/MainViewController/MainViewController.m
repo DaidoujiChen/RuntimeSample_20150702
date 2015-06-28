@@ -25,7 +25,7 @@
         infos = @[@{ @"title": @"Sample1 + DataViewController", @"filename":@"Sample1.json", @"controller":@"DataViewController" },
                   @{ @"title": @"Sample2 + DataViewController", @"filename":@"Sample2.json", @"controller":@"DataViewController" },
                   @{ @"title": @"Sample3 + DataViewController", @"filename":@"Sample3.json", @"controller":@"DataViewController" },
-                  @{ @"title": @"Sample3 + DataViewController", @"filename":@"Sample3.json", @"controller":@"HotfixDataViewController" }];
+                  @{ @"title": @"Sample3 + HotfixDataViewController", @"filename":@"Sample3.json", @"controller":@"HotfixDataViewController" }];
     }
     return infos;
 }
