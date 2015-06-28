@@ -18,4 +18,10 @@
     return resolveInstanceMethod;
 }
 
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    id forwardingTargetForSelector = [super forwardingTargetForSelector:aSelector];
+    NSLog(@"forwarding Target For Selector : %@", forwardingTargetForSelector);
+    return forwardingTargetForSelector;
+}
+
 @end
