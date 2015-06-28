@@ -7,6 +7,7 @@
 //
 
 #import "NSNull+AvoidCrash.h"
+#import <objc/runtime.h>
 
 @implementation NSNull (AvoidCrash)
 
@@ -19,9 +20,7 @@
 }
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
-    id forwardingTargetForSelector = [super forwardingTargetForSelector:aSelector];
-    NSLog(@"forwarding Target For Selector : %@", forwardingTargetForSelector);
-    return forwardingTargetForSelector;
+    return [NSNull emptyString];
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
@@ -35,6 +34,14 @@
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     NSLog(@"forwardInvocation : %@", anInvocation);
     [super forwardInvocation:anInvocation];
+}
+
++ (NSString *)emptyString {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSString new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 @end
