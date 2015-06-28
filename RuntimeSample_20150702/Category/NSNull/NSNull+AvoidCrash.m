@@ -7,6 +7,7 @@
 //
 
 #import "NSNull+AvoidCrash.h"
+#import <objc/runtime.h>
 
 @implementation NSNull (AvoidCrash)
 
@@ -28,13 +29,27 @@
     NSMethodSignature *methodSignature = [super methodSignatureForSelector:aSelector];
     if (!methodSignature) {
         NSLog(@"methodSignatureForSelector : %@", NSStringFromSelector(aSelector));
+        methodSignature = [[NSNull emptyString] methodSignatureForSelector:aSelector];
     }
     return methodSignature;
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     NSLog(@"forwardInvocation : %@", anInvocation);
-    [super forwardInvocation:anInvocation];
+    if ([[NSNull emptyString] respondsToSelector:[anInvocation selector]]) {
+        [anInvocation invokeWithTarget:[NSNull emptyString]];
+    }
+    else {
+        [super forwardInvocation:anInvocation];
+    }
+}
+
++ (NSString *)emptyString {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        objc_setAssociatedObject(self, _cmd, [NSString new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 @end
