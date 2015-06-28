@@ -24,4 +24,12 @@
     return forwardingTargetForSelector;
 }
 
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
+    NSMethodSignature *methodSignature = [super methodSignatureForSelector:aSelector];
+    if (!methodSignature) {
+        NSLog(@"methodSignatureForSelector : %@", NSStringFromSelector(aSelector));
+    }
+    return methodSignature;
+}
+
 @end
