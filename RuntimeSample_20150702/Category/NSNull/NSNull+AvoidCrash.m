@@ -32,4 +32,9 @@
     return methodSignature;
 }
 
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
+    NSLog(@"forwardInvocation : %@", anInvocation);
+    [super forwardInvocation:anInvocation];
+}
+
 @end
