@@ -23,6 +23,7 @@
 		018A841B1B3FDC220011773F /* Sample2.json in Resources */ = {isa = PBXBuildFile; fileRef = 018A841A1B3FDC220011773F /* Sample2.json */; };
 		018A841D1B3FDCAC0011773F /* Sample3.json in Resources */ = {isa = PBXBuildFile; fileRef = 018A841C1B3FDCAC0011773F /* Sample3.json */; };
 		018A84201B3FDD300011773F /* HotfixDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 018A841F1B3FDD300011773F /* HotfixDataViewController.m */; };
+		01D8A0671B40356000146CB9 /* NSNull+AvoidCrash.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D8A0661B40356000146CB9 /* NSNull+AvoidCrash.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		018A841C1B3FDCAC0011773F /* Sample3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sample3.json; sourceTree = "<group>"; };
 		018A841E1B3FDD300011773F /* HotfixDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotfixDataViewController.h; sourceTree = "<group>"; };
 		018A841F1B3FDD300011773F /* HotfixDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotfixDataViewController.m; sourceTree = "<group>"; };
+		01D8A0651B40356000146CB9 /* NSNull+AvoidCrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+AvoidCrash.h"; sourceTree = "<group>"; };
+		01D8A0661B40356000146CB9 /* NSNull+AvoidCrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+AvoidCrash.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				018A840D1B3FD1230011773F /* UIBarButtonItem */,
+				01D8A0641B40354A00146CB9 /* NSNull */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -200,6 +204,15 @@
 				018A841F1B3FDD300011773F /* HotfixDataViewController.m */,
 			);
 			path = DataViewControllerFamily;
+			sourceTree = "<group>";
+		};
+		01D8A0641B40354A00146CB9 /* NSNull */ = {
+			isa = PBXGroup;
+			children = (
+				01D8A0651B40356000146CB9 /* NSNull+AvoidCrash.h */,
+				01D8A0661B40356000146CB9 /* NSNull+AvoidCrash.m */,
+			);
+			path = NSNull;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				018A840A1B3FCA6A0011773F /* JSONContentViewController.m in Sources */,
+				01D8A0671B40356000146CB9 /* NSNull+AvoidCrash.m in Sources */,
 				018A83D01B3F76280011773F /* AppDelegate.m in Sources */,
 				018A83FE1B3F790F0011773F /* MainViewController.m in Sources */,
 				018A84101B3FD13D0011773F /* UIBarButtonItem+BlockAction.m in Sources */,
@@ -485,6 +499,7 @@
 				018A83EC1B3F76280011773F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		018A83ED1B3F76280011773F /* Build configuration list for PBXNativeTarget "RuntimeSample_20150702Tests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +508,7 @@
 				018A83EF1B3F76280011773F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
