@@ -12,6 +12,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"%@", [[NSNull null] performSelector:@selector(daidouji:haha:) withObject:@"hello" withObject:@"world"]);
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainViewController new]];
     [self.window makeKeyAndVisible];

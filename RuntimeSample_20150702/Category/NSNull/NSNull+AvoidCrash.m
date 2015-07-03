@@ -7,13 +7,23 @@
 //
 
 #import "NSNull+AvoidCrash.h"
+#import <objc/runtime.h>
 
 @implementation NSNull (AvoidCrash)
 
 + (BOOL)resolveInstanceMethod:(SEL)name {
     BOOL resolveInstanceMethod = [super resolveInstanceMethod:name];
     if (!resolveInstanceMethod) {
-        NSLog(@"CAN NOT resolve Instance Method : %@", NSStringFromSelector(name));
+        NSString *methodName = NSStringFromSelector(name);
+        NSLog(@"CAN NOT resolve Instance Method : %@", methodName);
+        NSArray *splitSelector = [methodName componentsSeparatedByString:@":"];
+        NSMutableString *typeEncoding = [NSMutableString string];
+        [typeEncoding appendString:@"@@:"];
+        for (NSInteger index = 0; index < splitSelector.count - 1; index++) {
+            [typeEncoding appendString:@"*"];
+        }
+        class_addMethod([self class], name, (IMP)theNilWorldIMP, [typeEncoding UTF8String]);
+        return YES;
     }
     return resolveInstanceMethod;
 }
@@ -35,6 +45,10 @@
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     NSLog(@"forwardInvocation : %@", anInvocation);
     [super forwardInvocation:anInvocation];
+}
+
+id theNilWorldIMP(id self, SEL _cmd, ...) {
+    return nil;
 }
 
 @end
