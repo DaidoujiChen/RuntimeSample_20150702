@@ -8,10 +8,14 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "WhyZero.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    WhyZero *zero = [WhyZero new];
+    [zero whyZero];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainViewController new]];
     [self.window makeKeyAndVisible];
